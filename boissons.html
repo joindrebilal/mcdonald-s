@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vitrine Boissons - McDonald's</title>
+  <style>
+    /* Style général */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: yellow;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      color: #333;
+    }
+
+    /* Barre de navigation */
+    .navbar {
+      width: 100%;
+      background-color: red;
+      padding: 15px 0;
+      text-align: center;
+      position: relative;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 18px;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .navbar a:hover {
+      color: yellow;
+    }
+
+    /* Bouton menu pour petits écrans */
+    .navbar .menu-btn {
+      display: none;
+      background-color: red;
+      color: white;
+      font-size: 24px;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    /* Conteneur du menu déroulant */
+    .navbar .menu {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Conteneur des boissons */
+    .drinks-container {
+      width: 90%;
+      max-width: 1200px;
+      background-color: red;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .drinks-container h2 {
+      color: white;
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+
+    /* Carte de chaque boisson */
+    .drink-item {
+      background-color: yellow;
+      width: calc(25% - 20px);
+      margin: 10px;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      display: inline-block;
+      transition: transform 0.3s;
+      position: relative;
+      vertical-align: top;
+    }
+
+    /* Taille fixe pour les images */
+    .drink-item img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    .drink-item h3 {
+      font-size: 16px;
+      color: #333;
+      margin: 10px 0 5px;
+    }
+
+    .price {
+      color: #333;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    /* Bouton Ajouter au Panier */
+    .add-to-cart-btn {
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .add-to-cart-btn:hover {
+      background-color: red;
+    }
+
+    /* Panier */
+    .cart-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: red;
+      color: white;
+      border-radius: 10px;
+      padding: 15px 25px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .cart-container:hover {
+      transform: scale(1.05);
+    }
+
+    .cart-info {
+      font-size: 16px;
+    }
+
+    .cart-info span {
+      color: yellow;
+      font-weight: bold;
+    }
+
+    .cart-total {
+      font-size: 14px;
+      color: yellow;
+    }
+
+    /* Responsive Design pour écrans moyens (tablettes) */
+    @media (max-width: 1024px) {
+      .drink-item {
+        width: calc(33.333% - 20px);
+      }
+
+      .navbar a {
+        font-size: 16px;
+      }
+
+      .cart-container {
+        font-size: 14px;
+        padding: 12px 20px;
+      }
+
+      .cart-info, .cart-total {
+        font-size: 14px;
+      }
+    }
+
+    /* Responsive Design pour petits écrans (mobiles) */
+    @media (max-width: 768px) {
+      .drinks-container {
+        padding: 10px;
+      }
+
+      .drink-item {
+        width: calc(50% - 20px);
+      }
+
+      
+
+      .navbar .menu {
+        display: none; /* Masquer le menu déroulant par défaut */
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+      }
+
+      .navbar .menu a {
+        margin: 10px 0;
+      }
+
+      .cart-container {
+        font-size: 12px;
+        padding: 10px 18px;
+      }
+
+      .cart-info, .cart-total {
+        font-size: 12px;
+      }
+
+      .navbar .menu-btn {
+        display: block; /* Afficher le bouton menu */
+      }
+
+      /* Style pour afficher le menu en colonne quand activé */
+      .navbar .menu.active {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .drinks-container {
+        width: 100%;
+      }
+
+      .drink-item {
+        width: 100%;
+        margin: 10px 0;
+      }
+
+      .navbar a {
+        font-size: 14px;
+      }
+
+      .cart-container {
+        font-size: 12px;
+        padding: 8px 15px;
+      }
+
+      .cart-info, .cart-total {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Barre de navigation -->
+<div class="navbar">
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <div class="menu">
+    <a href="index.html">Home</a>
+    <a href="burger-wrap.html">Burgers & Wraps</a>
+    <a href="happy-meal.html">Happy Meal</a>
+    <a href="petites-faims.html">Petites Faims</a>
+    <a href="desserts.html">Desserts</a>
+    <a href="frites.html">Frites</a>
+    <a href="boissons.html">Boissons</a>
+    <a href="salades.html">Salades</a>
+  </div>
+</div>
+
+<!-- Conteneur des boissons -->
+<div class="drinks-container" id="boissons">
+  <h2>Nos Boissons</h2>
+
+  <!-- Exemple de boisson -->
+  <div class="drink-item" data-name="Coca-Cola" data-price="10">
+    <img src="cola-glass (1).png" alt="Coca-Cola">
+    <h3>Coca-Cola</h3>
+    <p class="price">10,00 MAD</p>
+    <button class="add-to-cart-btn">Ajouter au panier</button>
+  </div>
+
+  <div class="drink-item" data-name="Sprite" data-price="9">
+    <img src="rb_9155 (1).png" alt="Sprite">
+    <h3>Sprite</h3>
+    <p class="price">9,00 MAD</p>
+    <button class="add-to-cart-btn">Ajouter au panier</button>
+  </div>
+
+  <div class="drink-item" data-name="Fanta" data-price="9">
+    <img src="rb_2148164547 (1).png" alt="Fanta">
+    <h3>Fanta</h3>
+    <p class="price">9,00 MAD</p>
+    <button class="add-to-cart-btn">Ajouter au panier</button>
+  </div>
+
+  <div class="drink-item" data-name="Jus d'orange" data-price="12">
+    <img src="glass-orange-juice-placed-wood (1).png" alt="Jus d'orange">
+    <h3>Jus d'orange</h3>
+    <p class="price">12,00 MAD</p>
+    <button class="add-to-cart-btn">Ajouter au panier</button>
+  </div>
+</div>
+
+<!-- Panier -->
+<div class="cart-container" onclick="viewCart()">
+  <div class="cart-info">
+    Panier : <span class="cart-count">0</span> article(s)
+  </div>
+  <div class="cart-total">
+    Total : <span class="total-price">0,00 MAD</span>
+  </div>
+</div>
+
+<script>
+  let cartCount = 0;
+  let totalPrice = 0;
+  const cartCountElement = document.querySelector('.cart-count');
+  const totalPriceElement = document.querySelector('.total-price');
+
+  // Fonction pour ajouter un article au panier
+  function addToCart(event) {
+    const itemPrice = parseFloat(event.target.closest('.drink-item').dataset.price);
+    cartCount++;
+    totalPrice += itemPrice;
+
+    // Mettre à jour l'affichage du panier
+    cartCountElement.textContent = cartCount;
+    totalPriceElement.textContent = totalPrice.toFixed(2) + " MAD";
+
+    const itemName = event.target.closest('.drink-item').dataset.name;
+    alert(itemName + " a été ajouté au panier !");
+  }
+
+  // Assigner la fonction "Ajouter au panier" à chaque bouton
+  document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+    button.addEventListener('click', addToCart);
+  });
+
+  // Fonction pour afficher un message lorsque l'on clique sur le panier
+  function viewCart() {
+    alert("Vous avez " + cartCount + " article(s) dans votre panier pour un total de " + totalPrice.toFixed(2) + " MAD.");
+  }
+
+  // Fonction pour afficher ou masquer le menu
+  function toggleMenu() {
+    const menu = document.querySelector('.navbar .menu');
+    menu.classList.toggle('active');
+  }
+</script>
+
+</body>
+</html>

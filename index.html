@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accueil | McDonald's</title>
+  <style>
+    /* Style général pour la page */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      color: #333;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Barre de navigation */
+    .navbar {
+      width: 100%;
+      background-color: red;
+      padding: 15px 0;
+      text-align: center;
+      position: relative;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 18px;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .navbar a:hover {
+      color: yellow;
+    }
+
+    /* Bouton menu pour petits écrans */
+    .navbar .menu-btn {
+      display: none;
+      background-color: red;
+      color: white;
+      font-size: 24px;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    /* Conteneur du menu déroulant */
+    .navbar .menu {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+
+    /* Style de l'en-tête principal */
+    .header {
+      text-align: center;
+      padding: 100px 20px 50px;
+      background-color: #ffcc00;
+      width: 100%;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .header h1 {
+      color: #da291c;
+      font-size: 2.5em;
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    .header p {
+      color: #333;
+      font-size: 1.2em;
+      max-width: 600px;
+      margin: 20px auto;
+      line-height: 1.5;
+    }
+
+    /* Style de l'image principale */
+    .main-image {
+      max-width: 90%;
+      height: auto;
+      margin: 20px 0;
+      border-radius: 10px;
+      box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Style de la section descriptive */
+    .menu-description {
+      background-color: #fff3e0;
+      color: #333;
+      border-left: 6px solid #da291c;
+      border-radius: 10px;
+      padding: 30px 20px;
+      max-width: 800px;
+      margin: 40px 20px;
+      font-size: 1.1em;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .menu-description h2 {
+      color: #da291c;
+      font-size: 2em;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+
+    .menu-description p {
+      line-height: 1.6;
+    }
+
+    /* Style responsive */
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 2em;
+      }
+
+    
+
+      .menu-description h2 {
+        font-size: 1.8em;
+      }
+
+      .main-image {
+        max-width: 100%;
+      }
+    
+      
+
+      .navbar .menu {
+        display: none; /* Masquer le menu déroulant par défaut */
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+      }
+
+      .navbar .menu a {
+        margin: 10px 0;
+      }
+
+
+
+      .navbar .menu-btn {
+        display: block; /* Afficher le bouton menu */
+      }
+
+      /* Style pour afficher le menu en colonne quand activé */
+      .navbar .menu.active {
+        display: flex;
+      }
+
+
+
+    }
+
+    @media (max-width: 480px) {
+      .header {
+        padding: 60px 20px 30px;
+      }
+
+      .header h1 {
+        font-size: 1.8em;
+      }
+
+      .header p {
+        font-size: 1em;
+      }
+
+
+      .navbar a {
+        font-size: 14px;
+      }
+      .menu-description h2 {
+        font-size: 1.6em;
+      }
+
+      .menu-description {
+        padding: 20px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Barre de navigation -->
+<div class="navbar">
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <div class="menu">
+    <a href="index.html">Home</a>
+    <a href="burger-wrap.html">Burgers & Wraps</a>
+    <a href="happy-meal.html">Happy Meal</a>
+    <a href="petites-faims.html">Petites Faims</a>
+    <a href="desserts.html">Desserts</a>
+    <a href="frites.html">Frites</a>
+    <a href="boissons.html">Boissons</a>
+    <a href="salades.html">Salades</a>
+</div>
+
+</div>
+
+<!-- En-tête principal -->
+<div class="header">
+  <h1>Bienvenue chez McDonald's</h1>
+  <p>Découvrez notre menu délicieux, des burgers classiques aux salades fraîches, et profitez d'une expérience unique avec vos amis et votre famille.</p>
+</div>
+
+<!-- Image principale -->
+<img src="image (2).png" alt="Plat McDonald's" class="main-image">
+
+<!-- Section de description du menu -->
+<div class="menu-description">
+  <h2>Explorez notre Menu Varié</h2>
+  <p>
+    Chez McDonald's, nous avons quelque chose pour tout le monde ! Que vous ayez envie de nos célèbres burgers, de wraps savoureux, de friandises sucrées ou d'une boisson rafraîchissante, notre menu est conçu pour satisfaire toutes les envies. Les enfants adoreront nos Happy Meals, tandis que les adultes pourront savourer des salades fraîches ou de délicieuses petites faims. Venez découvrir la diversité et la qualité de nos produits, toujours préparés avec soin pour une expérience unique.
+  </p>
+</div>
+
+<script>
+  
+  // Fonction pour afficher ou masquer le menu
+  function toggleMenu() {
+    const menu = document.querySelector('.navbar .menu');
+    menu.classList.toggle('active');
+  }
+</script>
+</body>
+</html>
